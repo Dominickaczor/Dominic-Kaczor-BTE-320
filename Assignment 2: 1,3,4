@@ -1,0 +1,165 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "toc_visible": true,
+      "authorship_tag": "ABX9TyNo2A7wvMd4MhQXzC8QtMRW",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Dominickaczor/Dominic-Kaczor-BTE-320/blob/main/Assignment%202%3A%201%2C3%2C4\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# Assignment 1: Quality Control"
+      ],
+      "metadata": {
+        "id": "KyoQbqFu98Sj"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "UEOszqaZ8SlH"
+      },
+      "outputs": [],
+      "source": [
+        "def getValues(n: int) -> list:\n",
+        "  '''\n",
+        "  Creates a list of weights. The weights are given by the user:\n",
+        "  Input:\n",
+        "  - number of items in the list\n",
+        "  Output:\n",
+        "  - a list of weights\n",
+        "  '''\n",
+        "  items = []\n",
+        "\n",
+        "  for i in range(n):\n",
+        "    try:\n",
+        "      item = float(input(f'Enter weight value {i+1}: '))\n",
+        "      items.append(item)\n",
+        "    except ValueError as e:\n",
+        "      print(f\"Invalid input: {e}. Please enter a number.\")\n",
+        "  return items\n",
+        "\n",
+        "def calcAverage(alist: list) -> float:\n",
+        "  '''\n",
+        "  Input:\n",
+        "  - a list of weights\n",
+        "  Output:\n",
+        "  - Average values: excludes the first two items\n",
+        "  '''\n",
+        "  try:\n",
+        "    if len(alist) < 3:\n",
+        "      return 0.0\n",
+        "\n",
+        "    return sum(alist[2:]) / len(alist[2:])\n",
+        "  except ZeroDivisionError:\n",
+        "    print(\"List is empty\")\n",
+        "    return float('nan')\n",
+        "\n",
+        "def main():\n",
+        "  try:\n",
+        "    num = int(input('Enter number of items: '))\n",
+        "    if num <= 0:\n",
+        "      raise ValueError('Number of items must be positive')\n",
+        "    weights = getValues(num)\n",
+        "    avg = calcAverage(weights)\n",
+        "    print(f'Average weight: {avg} lbs.')\n",
+        "  except ValueError as e:\n",
+        "    print(f\"Error: {e}\")\n",
+        "\n",
+        "main()"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# Assignment 3: Parking Garage"
+      ],
+      "metadata": {
+        "id": "N03XV3L7-1Z0"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def getParkingHours():\n",
+        "  return int(input('Enter number of hours: '))\n",
+        "\n",
+        "def calcParkingFee(hour):\n",
+        "  fee = 5 + 2.5 * hour\n",
+        "  if fee < 6.0:\n",
+        "    return 6.0\n",
+        "  elif fee > 20.0:\n",
+        "    return 20.0\n",
+        "  else:\n",
+        "    return fee\n",
+        "\n",
+        "def main():\n",
+        "  hours = int(input('Enter number of hours: '))\n",
+        "  fee = calcParkingFee(hours)\n",
+        "  print(fee)\n",
+        "\n",
+        "main()"
+      ],
+      "metadata": {
+        "id": "AprAZUT3_JLn"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# Assignment 4: Tuition"
+      ],
+      "metadata": {
+        "id": "Hhtlu9QHCHbU"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def calcTuition(credits):\n",
+        "    if credits >= 12:\n",
+        "        tuition = 20000\n",
+        "    else:\n",
+        "        tuition = 1200 + (1700 * credits)\n",
+        "    return tuition\n",
+        "\n",
+        "def main():\n",
+        "  credits = int(input(\"Enter the number of credits you are taking: \"))\n",
+        "  tuition = calcTuition(credits)\n",
+        "  print(f\"Your tuition for the semester is: ${tuition}\")\n",
+        "\n",
+        "main()"
+      ],
+      "metadata": {
+        "id": "-9JsZPnJDqAY"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
